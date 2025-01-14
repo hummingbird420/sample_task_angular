@@ -1,3 +1,8 @@
-<p>
-  user-list works!
-</p>
+<div class="contanier">
+  <div>
+    <app-table *ngIf="tableDataKey && tableDataKey.length" [table]="getAllData$" [tableDataKey]="tableDataKey"
+      [totalData]="getTotalData$" (pageChange)="pageChange($event)" (callBackFunc)="callBackFunc($event)">
+    </app-table>
+  </div>
+
+</div>

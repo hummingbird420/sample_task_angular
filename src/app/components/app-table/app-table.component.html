@@ -1,0 +1,81 @@
+<div *ngIf="isMobileView">
+    <table>
+        <tbody *ngIf="(table | async) as table">
+            <ng-container *ngIf="isMobileView && table && table.length && tableDataKey && tableDataKey.length">
+                <ng-container
+                    *ngFor="let item of table | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalDataCount }; let i = index">
+                    <tr *ngFor="let key of tableDataKey">
+                        <ng-container
+                            *ngIf="(item[key.value] && item[key.value] !== '_Unknown') || (key.buttonType && key.buttonType.length)">
+                            <td [class]="key.align + ' key-field'">{{ key.label }}</td>
+                            <td [class]="key.align" *ngIf="key.callBack" (click)="callBack(item, key.value)">
+                                {{ formatValue(item, key) }}
+                            </td>
+                            <td [class]="key.align" *ngIf="!key.callBack">
+                                {{ formatValue(item, key) }}
+                            </td>
+                        </ng-container>
+                        <ng-container *ngIf="key.buttonType && key.buttonType.length && !Embaded">
+                            <td [class]="'key-field'"></td>
+                            <td [class]="key.align">
+                                <ng-container *ngFor="let button of key.buttonType">
+                                    <button *ngIf="button === 1" color="accent">{{'Submit'}}</button>
+                                    <button *ngIf="button === 2" color="medium"
+                                        (click)="onEditData(item)">{{'Edit'}}</button>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+                        <ng-container *ngIf="Embaded && Embaded.key">
+                            <td [class]="'key-field'"></td>
+                            <td [class]="key.align">
+                                <button color="accent" [disabled]="item[Embaded.key] == '3'">{{ getLabelValue(item)
+                                    }}</button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </ng-container>
+                <hr />
+            </ng-container>
+        </tbody>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
+</div>
+
+<!-- Desktop View -->
+<div *ngIf="!isMobileView">
+    <table *ngIf="tableDataKey && tableDataKey.length">
+        <thead>
+            <tr>
+                <th *ngFor="let key of tableDataKey">{{ key.label }}</th>
+            </tr>
+        </thead>
+        <ng-container *ngIf="(table | async) as table">
+            <ng-container *ngIf="table && table.length">
+                <tbody>
+                    <tr
+                        *ngFor="let row of table | paginate: { itemsPerPage: 10, currentPage: page, totalItems: totalDataCount  }; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td *ngFor="let key of tableDataKey" [class]="key.align">
+                            {{ formatValue(row, key) }}
+                            <ng-container *ngIf="key.buttonType && key.buttonType.length && Embaded">
+                                <ng-container *ngFor="let button of key.buttonType">
+                                    <button *ngIf="button === 2" (click)="onEditData(row)">{{'Edit'}}</button>
+                                    <button *ngIf="button === 3" (click)="onDeleteData(row)">{{'Delete'}}</button>
+                                </ng-container>
+                            </ng-container>
+                        </td>
+                        <ng-container *ngIf="Embaded && Embaded.key">
+                            <td>
+                                <button color="accent" (click)="callBack(row, row[Embaded.key])"
+                                    [disabled]="row[Embaded.key] == '3'">
+                                    {{ getLabelValue(row) }}
+                                </button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </ng-container>
+        </ng-container>
+    </table>
+    <pagination-controls (pageChange)="pageChanged($event)" class="pagination"></pagination-controls>
+</div>

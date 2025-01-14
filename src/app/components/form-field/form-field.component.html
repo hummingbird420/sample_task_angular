@@ -1,0 +1,143 @@
+<div class="container mt-5">
+    <div id="widget-categories-3">
+        <h4 class="widget-title">{{ formFieldRef.label }}</h4>
+    </div>
+
+    <div class="block-form float-label">
+        <form [formGroup]="dynamicForm">
+            <div *ngFor="let field of formFieldRef.fields">
+                <!-- Text Field -->
+                <div *ngIf="field.type === 'text'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <input [placeholder]="(field.placeholder ?? '') " [formControlName]="field.name" type="text"
+                        class="form-control" autocomplete="off" />
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+                <!-- Email Field -->
+                <div *ngIf="field.type === 'email'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <input [placeholder]="(field.placeholder ?? '') " type="email" [formControlName]="field.name"
+                        class="form-control" autocomplete="off" />
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+                <!-- Date Field -->
+                <div *ngIf="field.type === 'date'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <input [placeholder]="(field.placeholder ?? '') " type="date" [formControlName]="field.name"
+                        class="form-control" autocomplete="off" />
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+                <!-- Phone Field -->
+                <div *ngIf="field.type === 'phone'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <input [placeholder]="(field.placeholder ?? '') " type="text" [formControlName]="field.name"
+                        class="form-control" autocomplete="off" />
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['invalidPhone']"
+                        class="text-danger">
+                        Invalid phone!
+                    </div>
+                </div>
+
+                <!-- Number Field -->
+                <div *ngIf="field.type === 'number'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <input [placeholder]="(field.placeholder ?? '') " type="number" [formControlName]="field.name"
+                        class="form-control" />
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div *ngIf="field.type === 'password'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <input [placeholder]="(field.placeholder ?? '') " type="password" [formControlName]="field.name"
+                        class="form-control" autocomplete="new-password" />
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+                <!-- Select Field -->
+                <div *ngIf="field.type === 'select'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <select [formControlName]="field.name" class="form-control"
+                        (change)="onChangeEvent($event, field.name)">
+                        <option value="0">{{ 'Select ' + field.label }}</option>
+                        <option *ngFor="let option of (field.options | async)" [value]="option.value">{{ option.label }}
+                        </option>
+                    </select>
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+                <!-- Textarea Field -->
+                <div *ngIf="field.type === 'textarea'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <textarea [formControlName]="field.name" [placeholder]="(field.placeholder ?? '') "
+                        class="form-control"></textarea>
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+                <!-- Editor Field -->
+                <div *ngIf="field.type === 'editor'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <o-editor [formControlName]="field.name" class="form-control"></o-editor>
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+
+
+                <!-- Image Field -->
+                <div *ngIf="field.type === 'image'" class="form-group">
+                    <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
+                    <app-file-upload [formControlName]="field.name" class="form-control"></app-file-upload>
+                    <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
+                        class="text-danger">
+                        {{ 'Required!.' }}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="footer-button">
+                <ng-container *ngFor="let button of formFieldRef.buttons">
+                    <div *ngIf="button.buttonType === 'button'" class="button-section">
+                        <button (click)="onButtonClick(button.type)" class="btn btn-outline-primary">
+                            <i class="bi {{ button.icon }}"></i> {{ button.label }}
+                        </button>
+                    </div>
+                    <div *ngIf="button.buttonType === 'a'" class="a-section">
+                        <a [href]="button.link" class="btn btn-link">{{ button.label }}</a>
+                    </div>
+                </ng-container>
+            </div>
+        </form>
+    </div>
+</div>
