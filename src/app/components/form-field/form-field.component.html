@@ -115,14 +115,14 @@
 
 
                 <!-- Image Field -->
-                <div *ngIf="field.type === 'image'" class="form-group">
+                <!-- <div *ngIf="field.type === 'image'" class="form-group">
                     <label>{{ field.label }} <span class="text-danger" *ngIf="field.required">*</span></label>
                     <app-file-upload [formControlName]="field.name" class="form-control"></app-file-upload>
                     <div *ngIf="isSubmitted && dynamicForm.controls[field.name].errors?.['required']"
                         class="text-danger">
                         {{ 'Required!.' }}
                     </div>
-                </div>
+                </div> -->
 
             </div>
 

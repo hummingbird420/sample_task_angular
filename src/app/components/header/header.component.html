@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">MyApp</a>
+
+        <div class="d-flex ms-auto">
+
+            <div class="nav-item mx-2">
+                <button class="btn btn-light">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-panel"
+                        *ngIf="numberOfUnseenNotifications">{{numberOfUnseenNotifications}}</span>
+                </button>
+            </div>
+
+
+            <div class="nav-item dropdown">
+                <button class="btn btn-light dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    <img src="assets/icons/user.png" class="rounded-circle" alt="User" />
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                    <li><span class="dropdown-item">Username</span></li>
+                    <li><span class="dropdown-item">{{'email@example.com'}}</span></li>
+                    <li>
+                        <hr class="dropdown-divider" />
+                    </li>
+                    <li><button class="dropdown-item" (click)="logout()">Logout</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

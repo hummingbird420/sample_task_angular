@@ -1,5 +1,5 @@
 <div *ngIf="isMobileView">
-    <table>
+    <table *ngIf="tableDataKey && tableDataKey.length" class="table table-striped">
         <tbody *ngIf="(table | async) as table">
             <ng-container *ngIf="isMobileView && table && table.length && tableDataKey && tableDataKey.length">
                 <ng-container
@@ -43,7 +43,7 @@
 
 <!-- Desktop View -->
 <div *ngIf="!isMobileView">
-    <table *ngIf="tableDataKey && tableDataKey.length">
+    <table *ngIf="tableDataKey && tableDataKey.length" class="table table-striped">
         <thead>
             <tr>
                 <th *ngFor="let key of tableDataKey">{{ key.label }}</th>

@@ -12,13 +12,10 @@ const MainRoute: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: 'anonymous',
-    loadChildren: () => import('./pages/anonymous/anonymous.module').then(m => m.AnonymousModule)
+    path: '',
+    loadChildren: () => import('./pages/page.module').then(m => m.PageModule)
   },
-  {
-    path: 'authorized',
-    loadChildren: () => import('./pages/authorized/authorized.module').then(m => m.AuthorizedModule)
-  },
+
   {
     path: '**',
     redirectTo: '/anonymous',

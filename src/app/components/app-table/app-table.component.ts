@@ -28,7 +28,7 @@ export class AppTableComponent {
   constructor(private breakpointObserver: BreakpointObserver, private cdRef: ChangeDetectorRef) { }
   ngOnInit() {
     this.checkViewSize();
-    this.totalData.pipe(takeUntil(this.dead$)).subscribe((data: number) => {
+    this.totalData.pipe(takeUntil(this.dead$)).subscribe((data: number | null | undefined) => {
       if (data) {
         this.totalDataCount = data;
         this.cdRef.detectChanges();

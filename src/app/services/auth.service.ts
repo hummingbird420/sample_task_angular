@@ -12,7 +12,7 @@ export class AuthService {
         return this.http.post<any[]>("accounts/sign-in", obj);
     }
     postUserData(obj: any): Observable<any[]> {
-        return this.http.post<any[]>("accounts/sign-up", obj);
+        return this.http.post<any[]>("https://localhost:7231/rk/api/EfUserInfo", obj);
     }
 
 }
