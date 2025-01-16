@@ -11,10 +11,10 @@ const routes: Routes = [
     {
         path: 'users',
         component: UserListPage
-    },
+    }
 ];
-
 @NgModule({
     imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class AnonymousRoutingModule { }

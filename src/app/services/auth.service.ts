@@ -8,11 +8,11 @@ import { Observable } from "rxjs";
 export class AuthService {
     constructor(private http: HttpClient) { }
 
-    getUserByLogin(obj: any): Observable<any[]> {
-        return this.http.post<any[]>("accounts/sign-in", obj);
+    login(obj: any): Observable<any[]> {
+        return this.http.post<any[]>("Auth/login", obj);
     }
-    postUserData(obj: any): Observable<any[]> {
-        return this.http.post<any[]>("https://localhost:7231/rk/api/EfUserInfo", obj);
+    signUp(obj: any): Observable<any[]> {
+        return this.http.post<any[]>("EfUserInfo", obj);
     }
 
 }

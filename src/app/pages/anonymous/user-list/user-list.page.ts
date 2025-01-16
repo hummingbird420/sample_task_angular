@@ -18,8 +18,7 @@ export class UserListPage implements OnInit, OnDestroy {
   getTotalData$: Observable<number> = of(0);
   constructor(private service: AnonymousService) {
     this.tableDataKey.push(
-      { label: 'SL', value: 'SL' }
-      , { label: 'User Name', value: 'userName' }
+      { label: 'User Name', value: 'userName' }
       , { label: 'Password', value: 'password' }
       , { label: 'Role', value: 'role' }
     );

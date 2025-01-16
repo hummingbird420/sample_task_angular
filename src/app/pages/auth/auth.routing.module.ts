@@ -12,10 +12,10 @@ const routes: Routes = [
     {
         path: 'sign-in',
         component: SignInPage
-    },
+    }
 ];
-
 @NgModule({
     imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class AuthRoutingModule { }

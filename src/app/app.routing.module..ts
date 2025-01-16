@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 const MainRoute: Routes = [
   {
     path: '',
-    redirectTo: '/anonymous',
+    redirectTo: 'anonymous/users',
     pathMatch: 'full'
   },
   {
@@ -15,14 +15,12 @@ const MainRoute: Routes = [
     path: '',
     loadChildren: () => import('./pages/page.module').then(m => m.PageModule)
   },
-
   {
     path: '**',
-    redirectTo: '/anonymous',
+    redirectTo: 'anonymous/users',
     pathMatch: 'full'
   }
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(MainRoute)],
   exports: [RouterModule]

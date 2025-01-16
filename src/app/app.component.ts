@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SignalRService } from './services/signalr.service';
 
 
 @Component({
@@ -7,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  constructor(private service: SignalRService) {
+    this.service.startConnection('1');
+  }
   title = 'sample_task_angular';
 }

@@ -8,51 +8,53 @@ import { BedsPage } from "./beds/beds.page";
 import { BedCreatePage } from "./bed-create/bed-create.page";
 import { BedAllotmentPage } from "./bed-allotment/bed-allotment.page";
 import { BedAllotmentViewPage } from "./bed-allotment-view/bed-allotment-view.page";
+import { DoctorPage } from "./doctor/doctor.page";
+import { DoctorCreatePage } from "./doctor-create/doctor-create.page";
 
 const routes: Routes = [
     {
-        path: '/patients',
+        path: 'patients',
         component: PatientsPage
     },
     {
-        path: '/patient-create',
+        path: 'patient-create',
         component: PatientCreatePage
     },
     {
-        path: '/doctors',
-        component: PatientsPage
+        path: 'doctors',
+        component: DoctorPage
     },
     {
-        path: '/doctor-create',
-        component: PatientCreatePage
+        path: 'doctor-create',
+        component: DoctorCreatePage
     },
     {
-        path: '/hospitals',
+        path: 'hospitals',
         component: HospitalsPage
     },
     {
-        path: '/hospital-create',
+        path: 'hospital-create',
         component: HospitalCreatePage
     },
     {
-        path: '/beds',
+        path: 'beds',
         component: BedsPage
     },
     {
-        path: '/bed-create',
+        path: 'bed-create',
         component: BedCreatePage
     },
     {
-        path: '/bed-allotments',
+        path: 'bed-allotments',
         component: BedAllotmentPage
     },
     {
-        path: '/bed-allotments-view',
+        path: 'bed-allotments-view',
         component: BedAllotmentViewPage
     }
 ];
-
 @NgModule({
     imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
 })
 export class AuthorizedRoutingModule { }

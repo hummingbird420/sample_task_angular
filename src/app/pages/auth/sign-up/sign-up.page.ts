@@ -38,7 +38,7 @@ export class SignUpPage implements OnInit {
         "password": value.password,
         "role": value.role
       }
-      this.service.postUserData(obj).subscribe((res: any) => {
+      this.service.signUp(obj).subscribe((res: any) => {
         console.log(res);
 
       });
